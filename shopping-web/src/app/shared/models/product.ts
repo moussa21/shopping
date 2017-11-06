@@ -1,5 +1,6 @@
+import {Image} from './image';
 
-public export class Product {
+export class Product {
 
 	private productId: number;
 
@@ -12,16 +13,10 @@ public export class Product {
 	private price: number;
 
 
-    private images: Blob [] ;
+    private images: Image [] ;
 
 
     private comments: Comment[];
-
-	/**
-	 *
-	 */
-	public Product() {
-	}
 
 	/**
 	 * @param category
@@ -40,7 +35,11 @@ public export class Product {
 		this.images = images;
 		this.comments = comments;
 	}
-
+    static fromJSON(json) {
+        const product: Product = Object.create(Product.prototype);
+        Object.assign(product, json);
+        return product;
+    }
 	public getProductId() {
 		return this.productId;
 	}
@@ -82,7 +81,7 @@ public export class Product {
 	}
 
 	public  getImages(): Image[] {
-		return images;
+		return this.images;
 	}
 
 	public  setImages(images: Image[]) {
@@ -90,7 +89,7 @@ public export class Product {
 	}
 
 	public  getComments(): Comment[] {
-		return comments;
+		return this.comments;
 	}
 
 	public  setComments(comments: Comment[]) {

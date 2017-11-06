@@ -14,11 +14,16 @@ export class Category {
 	/**
 	 *
 	 */
-	public constructor() {
+	public constructor(name: String) {
+		this.name = name;
 
 	}
 
-
+    static fromJSON(json) {
+        const category: Category = Object.create(Category.prototype);
+        Object.assign(category, json);
+        return category;
+    }
 	public getCategoryId(): number {
 		return this.categoryId;
 	}

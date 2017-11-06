@@ -6,6 +6,7 @@ export class Image {
 
         private  imageId: number;
 
+        private imageName: String;
 
         private  productId: number;
 
@@ -14,10 +15,16 @@ export class Image {
         /**
          *
          */
-       constructor() {
+       constructor(imageName: String, productId: number, picture: Blob ) {
+           this.imageName = imageName;
+           this.productId = productId;
+           this.picture = picture;
         }
-
-
+        static fromJSON(json) {
+            const image: Image = Object.create(Image.prototype);
+            Object.assign(image, json);
+            return image;
+        }
 
         public  getImageId(): number {
             return this.imageId;
@@ -49,4 +56,9 @@ export class Image {
             this.productId = productId;
         }
 
+        public getImageName(): String {
+            return this.imageName;
+        }
+        public setImageName(imageName: String){
+            this.imageName = imageName;     }
     }
